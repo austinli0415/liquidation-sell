@@ -1,3 +1,15 @@
+# Website for liquidation sell
+
+This project is deployed at https://liquidation-sell.web.app/
+
+Front page has product catagories.
+
+![front page](https://github.com/austinli0415/liquidation-sell/blob/master/public/front_page.png?raw=true)
+
+Products are shown as cards when clicked on a catagory.
+
+![product list](https://github.com/austinli0415/liquidation-sell/blob/master/public/product_list.png?raw=true)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
