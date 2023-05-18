@@ -14,9 +14,14 @@ import MenuBar from './MenuBar';
 export default function ButtonAppBar() {
   const navigate = useNavigate()
   const [{ cart, user }] = useStateValue();
+  const [, dispatch] = useStateValue();
+
   const login = () =>{
     if(user){
       auth.signOut();
+      dispatch({
+        type: 'REMOVE_ALL_FROM_CART',
+      })
     }else{
       navigate("/sign-in");
     }
@@ -42,8 +47,29 @@ export default function ButtonAppBar() {
             <Typography mr={0.5}>{cart.length}</Typography>
             <ShoppingCartIcon></ShoppingCartIcon>
           </IconButton>
-          <Button color="inherit" onClick={login} sx={{textTransform: 'capitalize', fontSize: 16}}>{user ? 'Sign Out' : 'Sign In'}</Button>
-          <Button color="inherit" onClick={() => navigate("/sign-up") } sx={{textTransform: 'capitalize', fontSize: 16}}>Sign Up</Button>
+          <Button color="inherit" onClick={login} sx={{textTransform: 'capitalize', fontSize: 16}}>
+            {user? (
+                       
+              <Box sx={{ml: 2, mr: 2, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Typography mt={0.5} sx={{fontSize: 13}}>
+                  {user? `Hello, ${user?.email.substring(0, user?.email.indexOf("@"))}` : 'Hello'}
+                </Typography>
+                <Typography>
+                  Sign Out
+                </Typography>
+              </Box >
+            ) : (
+              <Box sx={{ml: 2, mr: 2, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Typography mt={0.5} sx={{fontSize: 13}}>
+                    Hello
+                </Typography>
+                <Typography>
+                  Sign In
+                </Typography>
+              </Box >
+            )
+            }
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

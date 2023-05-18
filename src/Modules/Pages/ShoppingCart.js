@@ -9,7 +9,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
 import CurrencyFormat from "react-currency-format";
 import { getCartTotal } from '../Components/reducer';
 
@@ -19,8 +18,8 @@ function ShoppingCart() {
   return (
     <>
       <AppBar />
-      <Box align="center" mt={4}>
-        <Typography variant="h3">
+      <Box align="center" mt={6}>
+        <Typography variant="h4">
           Shopping Cart
         </Typography>
       </Box>
@@ -31,7 +30,7 @@ function ShoppingCart() {
       ):
       (
       <Box sx={{display: "flex", flexDirection: "row"}}>
-          <Box padding={5} flexGrow={1} maxWidth={"75%"}>
+          <Box padding={5} flexGrow={1}>
             <Grid container spacing={3}>
               {cart.map((item) => (
                   <Grid item xs={12} md={3} align="center" style={{display: 'flex'}}> 
@@ -72,16 +71,16 @@ function ShoppingCart() {
                 }
             </Grid>   
         </Box>
-        <Container
+        <Grid container
           sx={{backgroundColor: "#f3f3f3", 
-                width: "30%",
+                maxWidth: '20%',
                 height: "30%",
                 margin: 5, 
                 display: 'flex', 
                 flexDirection: 'column',
                 borderRadius: 1.5,
                 border: 1,
-                padding: 3
+                padding: 2
           }}>
           <CurrencyFormat 
             value={getCartTotal(cart)} 
@@ -98,7 +97,7 @@ function ShoppingCart() {
               </Button>
               </>
             }/>
-        </Container>
+        </Grid>
       </Box>
       )}
     </>

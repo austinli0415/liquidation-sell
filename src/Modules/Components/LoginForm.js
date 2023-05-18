@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth } from "./Firebase";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useStateValue } from '../Components/StateProvider';
 
 const defaultTheme = createTheme();
 
@@ -19,12 +20,16 @@ export default function SignIn() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [, dispatch] = useStateValue();
 
     const login = event => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
         .then((auth) => {
             navigate("/");
+            dispatch({
+              type: 'REMOVE_ALL_FROM_CART',
+            })
 
         })
         .catch((e) => alert(e.message));
@@ -67,8 +72,8 @@ export default function SignIn() {
                 label="Password" 
                 margin='normal' 
                 style={{backgroundColor: "white"}}/>
-            <Button onClick={login} fullWidth variant="contained" size="large" sx={{mt: 4, mb:4}}>
-                SIGN IN
+            <Button onClick={login} fullWidth variant="contained" size="large" sx={{mt: 4, mb:4, textTransform: 'capitalize', fontSize: 18}}>
+                Sign in
             </Button>
             <Grid container>
               <Grid item>

@@ -20,6 +20,8 @@ function reducer(state, action){
                 newCart.splice(index, 1);
             }
             return {...state, cart: newCart};
+        case 'REMOVE_ALL_FROM_CART':
+            return {...state, cart: []}
         case 'SET_USER':
             return{
                 ...state,
